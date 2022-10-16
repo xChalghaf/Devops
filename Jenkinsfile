@@ -1,29 +1,17 @@
-pipeline {
-	agent any
-	
-	stages {
-		stage ('Compile Stage') {
-			steps {
-				
-  				bat 'mvn clean compile'
-				
-			}
-		}
+node {
+   // Mark the code checkout 'stage'....
+   stage 'Checkout'
+   
+   git url: 'https://github.com/TTFHW/jenkins_pipeline_java_maven.git'
 
-		stage ('Testing Stage') {
-			steps {
-				
-				bat 'mvn test'
-				
-			}
-		}
-		stage ('Installing Stage') {
-			steps {
-				
-					bat 'mvn install'
-				
-			}				
-		}	
-		
-	}
+   // Get the maven tool.
+   // ** NOTE: This 'M3' maven tool must be configured
+   // **       in the global configuration.           
+   def mvnHome = tool 'M3'
+
+   // Mark the code build 'stage'....
+   stage 'Build'
+   // Run the maven build
+   sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
+   step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
 }
