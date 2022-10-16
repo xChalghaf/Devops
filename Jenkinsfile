@@ -1,5 +1,3 @@
-
-
 pipeline {
     options {
         skipStagesAfterUnstable()
