@@ -8,18 +8,7 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <servers>
-        <server>
-        <id>server001</id>
-        <username>admin</username>
-        <password>b2RaFU97LduxwTp</password>
-        <privateKey>${user.home}/.ssh/id_dsa</privateKey>
-        <passphrase>some_passphrase</passphrase>
-        <filePermissions>664</filePermissions>
-        <directoryPermissions>775</directoryPermissions>
-        <configuration></configuration>
-        </server>
-    </servers>
+
 
     <groupId>tn.esprit.rh</groupId>
     <artifactId>achat</artifactId>
