@@ -124,7 +124,7 @@
             <url>http://172.17.0.4:8081/repository/maven-nexus-repo/</url>
         </snapshotRepository>
     </distributionManagement>
-		
+	</properties>
         
 
 </project>
