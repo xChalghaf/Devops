@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('SonarQube analysis 2') {
             steps {
-                sh 'mvn clean package sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.password=$SONAR_TOKEN'
+                sh 'mvn clean package sonar:sonar -Dsonar.login=$SONAR_TOKEN'
             }
         }
         stage('SonarQube analysis 1') {
