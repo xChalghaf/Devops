@@ -28,7 +28,7 @@ pipeline {
         stage ('Maven Test Sonar') {
             steps {
 //                sh 'cd achat'
-                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.login=admin -Dsonar.password=ayoub123 -Dsonar.host.url=http://172.17.0.3:9000'
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.login=admin -Dsonar.password=ayoub123 -Dsonar.host.url=http://172.17.0.2:9000'
             }
         }   
         stage("Publish to Nexus Repository Manager") {
