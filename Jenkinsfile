@@ -15,7 +15,7 @@ pipeline {
         stage ('Maven Test Sonar') {
             steps {
 //                sh 'cd achat'
-                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.login=admin -Dsonar.password=ayoub123'
             }
 }
 
