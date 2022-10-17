@@ -65,7 +65,7 @@
 
 	</dependencies>
 
-	<!-- deploy to nexus -->
+	<!-- deploy to nexus  ok -->
 
 	<distributionManagement>
 		<repository>
