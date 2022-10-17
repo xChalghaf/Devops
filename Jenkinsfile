@@ -1,27 +1,24 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
-    }
     stages {
-        stage ('Initialize') {
+        stage('SonarQube analysis 1') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                sh 'mvn clean package sonar:sonar'
             }
         }
-
-        stage ('Build') {
+        stage("Quality Gate 1") {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                waitForQualityGate abortPipeline: true
             }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
+        }
+        stage('SonarQube analysis 2') {
+            steps {
+                sh 'gradle sonarqube'
+            }
+        }
+        stage("Quality Gate 2") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
     }
