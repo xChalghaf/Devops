@@ -1,18 +1,24 @@
-node {
-    
-
-    stage('prep') {
-        git url: 'https://github.com/mahouESPRIT/cicd.git'                
+pipeline {
+  agent any
+  stages {
+    stage('MVN COMPILE') {
+      steps {
+        sh 'mvn compile'
+      }
     }
-
-    stage('build') {
-        sh "${GRADLE_HOME}/bin/gradle build"
-    }
-stage ('Maven Test Sonar') {
+      //  stage('MVN TEST') {
+       //     steps {
+        //        sh 'mvn test'
+        //    }
+       // }
+        
+        stage ('Maven Test Sonar') {
             steps {
-//              sh 'cd achat'
-                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.login=admin -Dsonar.password=ayoub123'
+//                sh 'cd achat'
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:RELEASE:sonar -Dsonar.login=admin -Dsonar.password=sonar'
             }
 }
 
+}
+  
 }
