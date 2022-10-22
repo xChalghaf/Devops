@@ -1,4 +1,3 @@
-FROM openjdk:8-jdk-alpine
-EXPOSE 8085
-ADD target/timesheet-devops-1.0.jar timesheet-devops-1.0.jar
-ENTRYPOINT ["java","-jar","/timesheet-devops-1.0.jar"] 
+FROM openjdk:8
+COPY ./target/achat-1.0.jar achat-1.0.jar
+CMD ["java","-jar","achat-1.0.jar"]
