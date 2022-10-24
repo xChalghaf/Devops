@@ -19,7 +19,7 @@ services:
 
 
   spring-service:
-    image: alakrms/achat
+    image: elmoatazbelleh/achat:latest
     environment:
         SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb/achatdb
         SPRING_DATASOURCE_USERNAME: root
