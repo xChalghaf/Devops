@@ -20,6 +20,6 @@ services:
    ports:
     - 8089:8089
    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/database?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/achatdb?autoReconnect=true&useSSL=false
    depends_on:
     - mysqldb 
