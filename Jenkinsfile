@@ -68,6 +68,22 @@ pipeline {
             }
             
         }
+        stage("Docker build"){
+         steps {
+         sh 'docker version'
+         sh 'docker build -t esprit .'
+         sh 'docker image list'
+         sh 'docker tag esprit ayoubmahou/esprit:latest'
+        
+        withCredentials([string(credentialsId: 'docker-hub', variable: 'PASSWORD')]) {
+            sh 'docker login -u ayoubmahou -p $PASSWORD'
+        }
+       }
+  }
+    stage("Push Image to Docker Hub"){
+      steps {
+       sh 'docker push  ayoubmahou/cicd:latest'
+    }
     }
     post {
         always {
