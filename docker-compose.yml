@@ -1,5 +1,17 @@
 version: "3"
 services:
+
+  mysqldb:
+    image: mysql:8
+    volumes:
+      -  /home/mysql/achatdata:/var/lib/mysql:rw
+    networks:
+      - net-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=achatdb
+    restart:  on-failure
+
   spring-achat:
     image: elmoatazbelleh/achat:latest
     ports:
@@ -12,16 +24,9 @@ services:
         SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysqldb
+    restart:  on-failure
  
-  mysqldb:
-    image: mysql:8
-    volumes:
-      -  /home/mysql/achatdata:/var/lib/mysql:rw
-    networks:
-      - net-mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=achatdb
+
      
 networks:
   net-mysql: 
