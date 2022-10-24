@@ -1,29 +1,27 @@
 version: "3"
 services:
+  spring-achat:
+    image: elmoatazbelleh/achat:latest
+    ports:
+      - "8089:8089"
+    networks:
+      - net-mysql
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb/achatdb
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mysqldb
+ 
   mysqldb:
-    image: mysql:latest
+    image: mysql:8
+    volumes:
+      -  /home/mysql/achatdata:/var/lib/mysql:rw
+    networks:
+      - net-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=achatdb
-      - MYSQL_PASSWORD=root
-    restart: unless-stopped
-    volumes:
-      -  /home/mysql/data:/var/lib/mysql/:rw
-    networks:
-      - ci-net 
-
-  spring-service:
-    image: elmoatazbelleh/achat
-    ports:
-      - 8089:8089
-    environment :
-      -SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb/achatdb
-      -SPRING_DATASOURCE_USERNAME : root
-      -SPRING_DATASOURCE_PASSWORD : root
-    depends_on:
-      - mysqldb
-    restart: unless-stopped
-    networks:
-      - ci-net
+     
 networks:
-  ci-net:
+  net-mysql: 
