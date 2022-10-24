@@ -13,7 +13,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    build: /var/lib/jenkins/workspace/CI-CDV2/target
+    build: /var/lib/jenkins/workspace/CI-CDV2/target/springboot.jar
     restart: on-failure
     env_file: ./.env
     ports:
