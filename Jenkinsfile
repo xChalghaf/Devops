@@ -68,7 +68,7 @@ pipeline {
          sh 'docker version'
          sh 'docker build -t esprit .'
          sh 'docker image list'
-         sh 'docker tag esprit ayoubmahou/cicd:latest'
+         sh 'docker tag esprit ayoubmahou/cicd:1.8'
         
         withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
             sh 'docker login -u ayoubmahou -p $PASSWORD'
@@ -77,7 +77,7 @@ pipeline {
   }
     stage("Push Image to Docker Hub"){
       steps {
-       sh 'docker push  ayoubmahou/cicd:latest'
+       sh 'docker push  ayoubmahou/cicd:1.8'
        sh 'docker-compose up'
 
     }
