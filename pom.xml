@@ -10,13 +10,13 @@
     </parent>
     <groupId>tn.esprit.rh</groupId>
     <artifactId>achat</artifactId>
-    <version>2.0</version>
+    <version>2.0-SNAPSHOT</version>
     <name>achat</name>
     <description>Projet pour le module DevOps</description>
          <distributionManagement>
    <repository>
       <id>deploymentRepo</id>
-      <url>http://192.168.56.102:8081/repository/maven-releases/</url>
+      <url>http://192.168.56.102:8081/repository/maven-snapshots/</url>
    </repository>
 </distributionManagement>
     <properties>
