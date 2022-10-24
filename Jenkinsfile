@@ -80,6 +80,14 @@ pipeline {
        sh 'docker push  ayoubmahou/cicd:latest'
     }
     }
+          stage('docker compose') {
+           steps{
+            script{
+                sh 'docker-compose up'
+            }
+        }
+        
+        }
     }
     post {
         always {
