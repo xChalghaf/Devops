@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label ‘main-host’
+   }
     tools {
         maven "Maven"
     }
