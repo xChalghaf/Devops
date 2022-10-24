@@ -8,7 +8,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.17.0.3:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
-        NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+        NEXUS_CREDENTIAL_ID = "nexus"
     }
     stages {
         stage("Clone code from VCS") {
@@ -68,9 +68,9 @@ pipeline {
          sh 'docker version'
          sh 'docker build -t esprit .'
          sh 'docker image list'
-         sh 'docker tag esprit ayoubmahou/esprit:latest'
+         sh 'docker tag esprit ayoubmahou/cicd:latest'
         
-        withCredentials([string(credentialsId: 'docker-hub', variable: 'PASSWORD')]) {
+        withCredentials([string(credentialsId: 'docker', variable: 'PASSWORD')]) {
             sh 'docker login -u ayoubmahou -p $PASSWORD'
         }
        }
