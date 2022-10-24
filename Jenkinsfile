@@ -80,7 +80,7 @@ pipeline {
        sh 'docker push  ayoubmahou/cicd:latest'
     }
     }
-          stage('docker compose') {
+          stage("docker compose") {
            steps{
                 sh 'docker-compose up'
         }
