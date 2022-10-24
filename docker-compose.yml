@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  mysqldb:
+   container_name: mysqldb
+   image: mysql:8
+   restart: unless-stopped
+   ports:
+    - 3307:3306
+   environment:
+    MYSQL_DATABASE: achatdb
+    MYSQL_ROOT_PASSWORD:
+   volumes:
+     - /home/mysql/data:/var/lib/mysql --user 1000
+
+  spring_app:
+   image: achatapp
+   container_name: achatprojet
+   restart: on-failure
+   ports:
+    - 8089:8089
+   environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/database?autoReconnect=true&useSSL=false
+   depends_on:
+    - mysqldb 
