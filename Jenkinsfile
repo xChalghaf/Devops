@@ -70,7 +70,7 @@ pipeline {
          sh 'docker image list'
          sh 'docker tag esprit ayoubmahou/cicd:latest'
         
-        withCredentials([string(credentialsId: 'docker', variable: 'PASSWORD')]) {
+        withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
             sh 'docker login -u ayoubmahou -p $PASSWORD'
         }
        }
