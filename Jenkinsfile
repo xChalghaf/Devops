@@ -78,14 +78,10 @@ pipeline {
     stage("Push Image to Docker Hub"){
       steps {
        sh 'docker push  ayoubmahou/cicd:latest'
+       sh 'docker-compose up'
+
     }
     }
-          stage("docker compose") {
-           steps{
-                sh 'docker-compose up'
-        }
-        
-        }
     }
     post {
         always {
