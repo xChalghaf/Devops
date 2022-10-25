@@ -1,15 +1,15 @@
 version: '3.7'
 services:
   bored-db:
-    container_name: bored-db
+    container_name: cicd-db
     image: mysql:8.0
     networks:
-      - bored-network
+      - cicd-network
     environment:
-      - MYSQL_USER=boredPeople
-      - MYSQL_PASSWORD=soBoredPass
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
       - MYSQL_DATABASE=appdb
-      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - dbvol:/var/lib/mysql
     ports:
@@ -19,24 +19,24 @@ services:
   bored-app:
     build:
       context: .
-    container_name: bored-spring
-    image: ilkerguldali/boredapp:latest
+    container_name: cicd
+    image: khalil29/cicd:latest
     ports:
-      - "8088:8088"
+      - "8089:8089"
     networks:
-      - bored-network
+      - cicd-network
     depends_on:
-      - bored-db
+      - cicd-db
     environment:
-      - MYSQL_HOST=bored-db
-      - MYSQL_USERNAME=boredPeople
-      - MYSQL_PASSWORD=soBoredPass
+      - MYSQL_HOST=cicd-db
+      - MYSQL_USERNAME=user
+      - MYSQL_PASSWORD=pass
       - MYSQL_DATABASE=appdb
       - MYSQL_PORT=3306
 
 networks:
   bored-network:
-    name: bored-network
+    name: cicd-network
 
 volumes:
   dbvol:
