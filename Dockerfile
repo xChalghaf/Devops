@@ -1,4 +1,4 @@
 FROM openjdk:11
-EXPOSE 8082
-ADD target/springprojet.jar springprojet.jar
-ENTRYPOINT ["java","-jar","/springprojet.jar"]
+EXPOSE 8085
+ADD target/spring-boot-docker.jar spring-boot-docker.jar
+ENTRYPOINT ["java","-jar","/spring-boot-docker.jar"]
