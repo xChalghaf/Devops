@@ -13,7 +13,7 @@ services:
     volumes:
       - dbvol:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3308:3308"
     restart: always
 
   cicd-app:
@@ -32,7 +32,7 @@ services:
       - MYSQL_USERNAME=user
       - MYSQL_PASSWORD=pass
       - MYSQL_DATABASE=appdb
-      - MYSQL_PORT=3306
+      - MYSQL_PORT=3308
 
 networks:
   cicd-network:
