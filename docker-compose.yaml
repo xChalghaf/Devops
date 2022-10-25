@@ -4,7 +4,7 @@ services:
     #service 1: definition of mysql database
     db:
       image: mysql/mysql-server:8.0
-      container_name: mysql   
+      container_name: mysql11   
       environment:
         - MYSQL_ROOT_PASSWORD=pass
         - MYSQL_USER=root
