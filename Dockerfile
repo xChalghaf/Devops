@@ -1,3 +1,4 @@
-From openjdk:8
-copy ./target/achat-1.8.jar achat-1.8.jar
-CMD ["java","-jar","achat-1.8.jar"]
+FROM openjdk:11
+EXPOSE 8082
+ADD target/springprojet.jar springprojet.jar
+ENTRYPOINT ["java","-jar","/springprojet.jar"]
