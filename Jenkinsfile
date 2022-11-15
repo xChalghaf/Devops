@@ -77,7 +77,7 @@ sh 'echo "Junit"'
         stage('Docker push') {
                  steps {
                       sh 'echo "Docker is pushing ...."'
-                       sh 'docker push $DOCKERHUB_CREDENTIALS_USR/devopsimage:latest'
+                       sh 'docker push $DOCKERHUB_CREDENTIALS_USR/cdimage:latest'
                      	 
                         }  
             
