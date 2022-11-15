@@ -39,6 +39,54 @@ sh 'echo "Junit"'
                 sh 'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
             }
         }
+        stage('Build Maven Spring'){
+             steps{
+                sh 'mvn clean install '
+                 }
+        }
+                         
+        stage('Build docker image'){
+            steps{
+              script{
+                sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/devopsimage:latest .'
+               
+                 }
+            }
+         }
+         
+         stage("Maven Build") {
+            steps {
+                script {
+                    sh "mvn package -DskipTests=true"
+                }
+            }
+        }
+			
+         
+                         
+        stage('Docker login') {
+                     steps {
+                    sh 'echo "login Docker ...."'
+                   	sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+                               } 
+                               }
+        
+        stage('Docker push') {
+                 steps {
+                      sh 'echo "Docker is pushing ...."'
+                       sh 'docker push $DOCKERHUB_CREDENTIALS_USR/devopsimage:latest'
+                     	 
+                        }  
+            
+        }
+        stage('docker compose'){
+                         steps{
+                                script{
+                                 sh ' docker-compose up -d'
+                                 }
+                           }
+          }
+
        
     }
 }
