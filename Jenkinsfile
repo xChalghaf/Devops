@@ -51,7 +51,7 @@ sh 'echo "Junit"'
         stage('Build docker image'){
             steps{
               script{
-                sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/devopsimage:latest .'
+                sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/cdimage:latest .'
                
                  }
             }
