@@ -1,6 +1,9 @@
 pipeline {
     agent any
-   
+    environment {
+
+        DOCKERHUB_CREDENTIALS = credentials('dockerHub')
+    }
     stages {
         stage('GIT'){
             steps {
@@ -48,7 +51,7 @@ sh 'echo "Junit"'
         stage('Build docker image'){
             steps{
               script{
-                sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/cdimage:latest .'
+                sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/devopsimage:latest .'
                
                  }
             }
@@ -74,7 +77,7 @@ sh 'echo "Junit"'
         stage('Docker push') {
                  steps {
                       sh 'echo "Docker is pushing ...."'
-                       sh 'docker push $DOCKERHUB_CREDENTIALS_USR/cdimage:latest'
+                       sh 'docker push $DOCKERHUB_CREDENTIALS_USR/devopsimage:latest'
                      	 
                         }  
             
